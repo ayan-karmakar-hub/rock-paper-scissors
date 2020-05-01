@@ -8,6 +8,7 @@ let compScore = document.querySelector('#computer-score');
 let compText = compScore.innerText;
 let roundNumber = document.querySelector('#round-number');
 let roundText = roundNumber.innerText;
+let displayWinner = document.querySelector('#display-winner');
 
 // Create an event listener for each of the images
 // corresponding to rock,paper,and scissors
@@ -41,16 +42,16 @@ function playRound(playerSelection,computerSelection){
         case playerSelection === "rock" && computerSelection == "scissors":
         case playerSelection === "paper" && computerSelection == "rock":
         case playerSelection === "scissors" && computerSelection == "paper":
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+            displayWinner.innerText = `You Win! ${playerSelection} beats ${computerSelection}.`;
             pScore++;
             break;
         case playerSelection == computerSelection:
-            console.log(`It was a tie! You both chose ${playerSelection}`);
+            displayWinner.innerText = `It was a tie! You both chose ${playerSelection}.`;
             pScore+=.5;
             cScore+=.5
             break;
         default:
-            console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+            displayWinner.innerText = `You Lose! ${computerSelection} beats ${playerSelection}.`;
             cScore++;     
     }
 
@@ -59,12 +60,13 @@ function playRound(playerSelection,computerSelection){
     playerScore.innerText = playerText;
     compText = compText.substr(0,10) + cScore;
     compScore.innerText = compText;
-    roundText = roundText.substr(0,15) + (cScore+pScore+1);
-    roundNumber.innerText = roundText;
 
     // checks for game end conditions
     if(pScore >= 5 || cScore >= 5){
         endGame();
+    } else {
+        roundText = roundText.substr(0,15) + (cScore+pScore+1);
+        roundNumber.innerText = roundText;
     }
 }
 
@@ -81,26 +83,7 @@ function endGame(){
     }
     message+=`Final Scores--> Player: ${pScore} | Computer: ${cScore}\n`;
     message+="Thanks for playing.";
-    alert(message);
-    
-    pScore = 0;
-    cScore = 0;
-
-    let response = prompt('Enter "yes" to play again');
-    if(response && response.toLowerCase() === "yes"){
-        reset();
-    } else {
-        choices.forEach((choice)=> choice.removeEventListener('click',startRound));
-    }
-}
-
-// helper function that resets the 
-// round number and scores to 0
-function reset(){
-    playerText = playerText.substr(0,8) + 0;
-    playerScore.innerText = playerText;
-    compText = compText.substr(0,10) + 0;
-    compScore.innerText = compText;
-    roundText = roundText.substr(0,15) + 1;
-    roundNumber.innerText = roundText;
+    displayWinner.setAttribute('style', "font-size:20px");
+    displayWinner.innerText = message;
+    choices.forEach((choice)=> choice.removeEventListener('click',startRound));
 }

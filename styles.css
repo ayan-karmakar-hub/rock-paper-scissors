@@ -8,7 +8,11 @@ body{
 
 #greeting {
     font-size: 75px;
-    margin-bottom: 150px;
+    margin-bottom: 60px;
+}
+
+#display-winner{
+    font-size: 30px;
 }
 
 #choose-weapon{
@@ -26,18 +30,19 @@ body{
     grid-template-columns: repeat(1fr,3);
     grid-template-areas: "rock paper scissors";
     align-items: center;
-    justify-items: center;
     margin-bottom: 100px;
 }
 
 #rock {
     grid-area: rock;
     width: 100px;
+    justify-self: end;
 }
 
 #paper {
     grid-area: paper;
     width: 100px;
+    justify-self: center;
 }
 
 #scissors {
@@ -47,12 +52,14 @@ body{
 
 
 /****** Scores ******/
+
 .scores{
     font-family: arial, sans-serif;
     display: grid;
     grid-template-columns: repeat(1fr,3);
     grid-template-areas: "player-score score-label computer-score";
     align-items: center;
+    font-size: 30px;
 }
 
 #player-score {
@@ -74,7 +81,7 @@ body{
 }
 
 #round-number{
-    margin-top: 100px;
+    margin-top: 80px;
     margin-right:20px;
     font-size: 30px;
     text-align: center;
