@@ -1,61 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Page Title</title>
+        <title>Rock Paper Scissors</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+        <script defer type="text/javascript" src="play-game.js"></script>
     </head>
     <body>
-        <script>
-            function computerPlay(){
-                let value = Math.floor(Math.random()*3);
-                let result = (value == 0)? "rock":
-                (value==1)? "paper": "scissors";
-                return result;
-            }
+        <h1 id="greeting"> Welcome to Rock Paper Scissors!</h1>
+        <h2 id="choose-weapon">CHOOSE YOUR WEAPON</h2>
+        <div class="choices">
+            <img id="rock" class="choice" src="rock.png" alt="picture of a rock">
+            <img id="paper" class="choice" src="paper.png" alt="clip art of a sheet of paper">
+            <img id="scissors" class="choice" src="scissors.png" alt="picture of scissors">
+        </div>
+        <div class="scores">
+            <h2 id="player-score"> Player: 0</h2>
+            <h2 id="score-label"> Current Score</h2>
+            <h2 id="computer-score"> Computer: 0</h2>
+        </div>
+        <h2 id="round-number">Current Round: 1</h2>
 
-            function playRound(playerSelection,computerSelection){
-                switch(true){
-                    case playerSelection === "rock" && computerSelection == "scissors":
-                    case playerSelection === "paper" && computerSelection == "rock":
-                    case playerSelection === "scissors" && computerSelection == "paper":
-                        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-                        return 1;
-                    case playerSelection == computerSelection:
-                        console.log(`It was a tie! You both chose ${playerSelection}`);
-                        return 0.5
-                    default:
-                        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-                        return 0;
-                }
-                console.log("How did I reach here...");
-
-            }
-
-            function game(){
-                alert("Welcome to Rock-Paper-Scissors.");
-                let playerScore = 0;
-                let compScore = 0;
-                for(let i = 1; i <= 5; i++){
-                    let playerChoice = prompt(`Enter your choice for Round ${i}:`).toLowerCase();
-                    while(playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors"){
-                        console.log("invalid user input.");
-                        playerChoice = prompt(`Enter your choice for Round ${i}:`).toLowerCase();
-                    }
-                    let result = playRound(playerChoice,computerPlay());
-                    playerScore += result;
-                    compScore += 1-result;
-                }
-                if(playerScore > compScore){
-                    console.log("You won the game!");
-                } else if (compScore > playerScore){
-                    console.log("The computer won the game!");
-                } else {
-                    console.log("It was a tie!");
-                }
-                console.log(`Final Scores--> Player:${playerScore} | Computer:${compScore}`);
-                console.log("Thanks for playing.");
-            }
-            game();
-        </script>
+        
+    
+    
+    
     </body>
 </html>
